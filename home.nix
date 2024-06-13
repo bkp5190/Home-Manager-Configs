@@ -66,7 +66,7 @@ in
     forwardAgent = true;
     matchBlocks = {
       "github.com" = {
-        hostname = "github.com";
+        hostname = "https://github.com";
         identityFile = "~/.ssh/id_ed25519.pub";
       };
     };
