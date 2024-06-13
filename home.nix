@@ -53,7 +53,7 @@ in
   # Enable and configure some basic programs.
   programs.git = {
     enable = true;
-    userName = "Boney Patel";
+    userName = " bkp5190";
     userEmail = "boneypatel37@yahoo.com";
 
     extraConfig = {
