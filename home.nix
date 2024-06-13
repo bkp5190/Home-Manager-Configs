@@ -45,7 +45,9 @@ in
     lazygit
     tmux
     ripgrep
-    zsh-powerlevel10k
+    powerlevel10k
+    # Allow copying to clipboard from tmux
+    reattach-to-user-namespace
   ];
 
   # Enable and configure some basic programs.
@@ -226,6 +228,11 @@ in
 
       # Rainbow delimiters
       rainbow-delimiters = {
+        enable = true;
+      };
+
+      # Treesitter for rainbow delimiters
+      treesitter = {
         enable = true;
       };
 
