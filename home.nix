@@ -45,7 +45,7 @@ in
     lazygit
     tmux
     ripgrep
-    powerlevel10k
+    zsh-powerlevel10k
     # Allow copying to clipboard from tmux
     reattach-to-user-namespace
   ];
@@ -90,6 +90,7 @@ in
     # Keymaps
     keymaps = 
     [
+      # oil mapping for file tree 
       {
         action = ":Oil<CR>";
         key = "<leader>o";
@@ -97,6 +98,7 @@ in
           silent = true;
         };
       }
+      # git blame open URL
       {
         action = ":GitBlameOpenCommitURL<CR>";
         key = "<leader>gb";
@@ -104,6 +106,7 @@ in
           silent = true;
         };
       }
+      # lazy git dashboard
       {
         action = ":LazyGit<CR>";
         key = "<leader>lg";
@@ -111,6 +114,7 @@ in
           silent = true;
         };
       }
+      # markdown preview mapping
       {
         action = ":PreviewMarkdown<CR>";
         key = "<leader>pm";
@@ -118,15 +122,17 @@ in
           silent = true;
         };
       }
+      # toggle term floating in neovim
       {
-        action = ":Toggle direction=float<CR>";
+        action = ":ToggleTerm direction=float<CR>";
         key = "<leader>f";
         options = {
           silent = true;
         };
       }
+      # toggle term at the bottom on buffer
       {
-        action = ":Toggle<CR>";
+        action = ":ToggleTerm<CR>";
         key = "<leader>b";
         options = {
           silent = true;
@@ -219,11 +225,6 @@ in
           next.key = "<Tab>";
           close.key = "<leader>x";
         };
-      };
-
-      # Illuminate hover words
-      illuminate = {
-        enable = true;
       };
 
       # Rainbow delimiters

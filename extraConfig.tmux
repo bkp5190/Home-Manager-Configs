@@ -1,7 +1,3 @@
-# Bind C-w + r to reload tmux config
-unbind r
-bind r source-file ~/.tmux.conf
-
 # Rebind <leader> to C-w
 set -g prefix C-w
 
@@ -9,10 +5,11 @@ set -g prefix C-w
 set -g mouse on
 
 # Copying from tmux
-bind -T copy-mode-vi v send -X begin-selection
-bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "pbcopy"
-bind P paste-buffer
-bind -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel "pbcopy"
+setw -g mode-keys vi
+set-option -g default-command "reattach-to-user-namespace -l $SHELL"
+bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "pbcopy"
+bind-key -T copy-mode-vi v send -X begin-selection
+bind p paste-buffer
 
 # Pane navigation bindings
 bind-key h select-pane -L
@@ -26,6 +23,9 @@ bind-key x kill-pane
 # Rebind splitting panes
 bind n split-window -h -c "#{pane_current_path}"
 bind f split-window -v -c "#{pane_current_path}"
+
+# Bind for cycling windows
+bind m next-window
 
 # List of plugins
 set -g @plugin 'tmux-plugins/tpm'
