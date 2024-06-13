@@ -65,9 +65,12 @@ in
     enable = true;
     forwardAgent = true;
     matchBlocks = {
-      "Commercial Github" = {
-        hostname = "https://www.github.com";
-        user = "boneypatel37@yahoo.com";
+      "https://github.com" = {
+        user = "bkp5190";
+        identityFile = "~/.ssh/id_ed25519.pub";
+      };
+      "https://github.gatech.edu" = {
+        user = "bpatel347";
         identityFile = "~/.ssh/id_ed25519.pub";
       };
     };
