@@ -65,11 +65,11 @@ in
     enable = true;
     forwardAgent = true;
     matchBlocks = {
-      "https://github.com" = {
+      "github.com" = {
         user = "bkp5190";
         identityFile = "~/.ssh/id_ed25519.pub";
       };
-      "https://github.gatech.edu" = {
+      "github.gatech.edu" = {
         user = "bpatel347";
         identityFile = "~/.ssh/id_ed25519.pub";
       };
