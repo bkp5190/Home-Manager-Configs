@@ -67,6 +67,7 @@ in
     matchBlocks = {
       "github.com" = {
         hostname = "https://github.com";
+        user = "boneypatel37@yahoo.com";
         identityFile = "~/.ssh/id_ed25519.pub";
       };
     };
