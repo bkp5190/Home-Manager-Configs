@@ -64,6 +64,12 @@ in
   programs.ssh = {
     enable = true;
     forwardAgent = true;
+    matchBlocks = {
+      "github.com" = {
+        hostname = "github.com";
+        identityFile = "~/.ssh/id_ed25519.pub";
+      };
+    };
   };
 
   programs.zsh = {
