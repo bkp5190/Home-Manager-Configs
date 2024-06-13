@@ -53,7 +53,7 @@ in
   # Enable and configure some basic programs.
   programs.git = {
     enable = true;
-    userName = " bkp5190";
+    userName = "bkp5190";
     userEmail = "boneypatel37@yahoo.com";
 
     extraConfig = {
@@ -66,10 +66,12 @@ in
     forwardAgent = true;
     matchBlocks = {
       "github.com" = {
+        hostname = "github.com";
         user = "bkp5190";
         identityFile = "~/.ssh/id_ed25519.pub";
       };
       "github.gatech.edu" = {
+        hostname = "github.gatech.edu";
         user = "bpatel347";
         identityFile = "~/.ssh/id_ed25519.pub";
       };
