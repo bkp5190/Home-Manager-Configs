@@ -150,6 +150,46 @@ in
           silent = true;
         };
       }
+      # Telescope search (live grep)
+      {
+        action = ":Telescope live_grep<CR>";
+        key = "<leader>sg";
+        options = {
+          silent = true;
+        };
+      }
+      # Telescope search files
+      {
+        action = ":Telescope find_files<CR>";
+        key = "<leader>sf";
+        options = {
+          silent = true;
+        };
+      }
+      # Telescope search commands
+      {
+        action = ":Telescope commands<CR>";
+        key = "<leader>sc";
+        options = {
+          silent = true;
+        };
+      }
+      # Telescope diagnostics
+      {
+        action = ":Telescope diagnostics<CR>";
+        key = "<leader>d";
+        options = {
+          silent = true;
+        };
+      }
+      # Telescope quickfixlist
+      {
+        action = ":Telescope quickfix<CR>";
+        key = "<leader>q";
+        options = {
+          silent = true;
+        };
+      }
       # Telescope undo tree
       {
         action = ":Telescope undo<CR>";
