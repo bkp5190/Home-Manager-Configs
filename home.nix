@@ -60,6 +60,7 @@ in
   programs.ssh = {
     enable = true;
     forwardAgent = true;
+    addKeysToAgent = "yes";
     matchBlocks = {
       "github.com" = {
         hostname = "github.com";
@@ -69,7 +70,7 @@ in
       "github.gatech.edu" = {
         hostname = "github.gatech.edu";
         user = "bpatel347";
-        identityFile = "~/.ssh/id_ed25519.pub";
+        identityFile = "~/.ssh/id_rsa.pub";
       };
     };
   };
