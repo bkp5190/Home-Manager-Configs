@@ -212,23 +212,23 @@ in
           silent = true;
         };
       }
-      # Harpoon add
-      {
-        action = "function() harpoon:list():add() end";
-        key = "<leader>ha";
-        options = {
-          silent = true;
-        };
-      }
-      # Harpoon toggle
-      {
-        action = "function() harpoon.ui:toggle_quick_menu(harpoon:list()) end";
-        key = "<leader>ht";
-        options = {
-          silent = true;
-        };
-      }
-
+      # # Harpoon add
+      # {
+      #   action = "function() harpoon:list():add() end";
+      #   key = "<leader>ha";
+      #   options = {
+      #     silent = true;
+      #   };
+      # }
+      # # Harpoon toggle
+      # {
+      #   action = "function() harpoon.ui:toggle_quick_menu(harpoon:list()) end";
+      #   key = "<leader>ht";
+      #   options = {
+      #     silent = true;
+      #   };
+      # }
+      #
 
     ];
   
@@ -358,11 +358,11 @@ in
         enable = true;
       };
 
-      # Quick swap files
-      harpoon = {
-        enable = true;
-        enableTelescope = true;
-      };
+      # # Quick swap files
+      # harpoon = {
+      #   enable = true;
+      #   enableTelescope = true;
+      # };
 
       # Language server protocols
       lsp = {
