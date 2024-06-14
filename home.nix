@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 let
   nixvim = import (builtins.fetchGit {
@@ -75,13 +75,36 @@ in
   };
 
   programs.zsh = {
+    enable = true;
+    autosuggestion.enable = true;
+    enableCompletion = true;
+    dotDir = ".config/zsh";
+
     shellAliases = {
       lg = "lazygit";
       v = "nvim";
+      c = "clear";
     };
-    plugins = [
+    oh-my-zsh.enable = true;
+    oh-my-zsh.extraConfig = builtins.readFile ./extraConfig.zsh;
+    initExtraBeforeCompInit = ''
+      # p10k instant prompt
+      local P10K_INSTANT_PROMPT="${config.xdg.cacheHome}/p10k-instant-prompt-''${(%):-%n}.zsh"
+      [[ ! -r "$P10K_INSTANT_PROMPT" ]] || source "$P10K_INSTANT_PROMPT"
+    '';
+
+    plugins = with pkgs; [
       {
-        # will source zsh-autosuggestions.plugin.zsh
+        file = "powerlevel10k.zsh-theme";
+        name = "powerlevel10k";
+        src = "${zsh-powerlevel10k}/share/zsh-powerlevel10k";
+      }
+      {
+        file = ".p10k.zsh";
+        name = "powerlevel10k-config";
+        src = ./.p10k.zsh;
+      }
+      {
         name = "zsh-autosuggestions";
         src = pkgs.fetchFromGitHub {
           owner = "zsh-users";
@@ -100,16 +123,10 @@ in
           sha256 = "0iqa9j09fwm6nj5rpip87x3hnvbbz9w9ajgm6wkrd5fls8fn8i5g";
         };
       }
-      {
-        name = "zsh-autocomplete";
-        src = pkgs.fetchFromGitHub {
-          owner = "marlonrichert";
-          repo = "zsh-autocomplete";
-          rev = "2023-07-13";
-          sha256 = "0y4gzw3wyvv37vn2gz4ny9kr72jnqamh1fsy0j3vnapbnxhq1gcp";
-        };
-      }
     ];
+    initExtra = '';
+      [[ ! -f ~/.config/home-manager/.p10k.zsh ]] || source ~/.config/home-manager/.p10k.zsh
+    '';
   };
 
   # Tmux configs
