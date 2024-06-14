@@ -42,6 +42,8 @@ in
     zsh-powerlevel10k
     # Allow copying to clipboard from tmux
     reattach-to-user-namespace
+    direnv
+    devbox
   ];
 
   # Enable and configure some basic programs.
@@ -77,14 +79,39 @@ in
       lg = "lazygit";
       v = "nvim";
     };
-    zplug = {
-      enable = true;
-      plugins = [
-        { name = "zsh-users/zsh-autosuggestions"; } # Simple plugin installation
-        { name = "romkatv/powerlevel10k"; tags = [ as:theme depth:1 ]; } # Installations with additional options. For the list of options, please refer to Zplug README.
-      ];
-    };
+    plugins = [
+      {
+        # will source zsh-autosuggestions.plugin.zsh
+        name = "zsh-autosuggestions";
+        src = pkgs.fetchFromGitHub {
+          owner = "zsh-users";
+          repo = "zsh-autosuggestions";
+          rev = "v0.4.0";
+          sha256 = "0z6i9wjjklb4lvr7zjhbphibsyx51psv50gm07mbb0kj9058j6kc";
+        };
+      }
+      {
+        name = "enhancd";
+        file = "init.sh";
+        src = pkgs.fetchFromGitHub {
+          owner = "b4b4r07";
+          repo = "enhancd";
+          rev = "v2.2.1";
+          sha256 = "0iqa9j09fwm6nj5rpip87x3hnvbbz9w9ajgm6wkrd5fls8fn8i5g";
+        };
+      }
+      {
+        name = "zsh-autocomplete";
+        src = pkgs.fetchFromGitHub {
+          owner = "marlonrichert";
+          repo = "zsh-autocomplete";
+          rev = "2023-07-13";
+          sha256 = "0y4gzw3wyvv37vn2gz4ny9kr72jnqamh1fsy0j3vnapbnxhq1gcp";
+        };
+      }
+    ];
   };
+
   # Tmux configs
   programs.tmux = {
     enable = true;
