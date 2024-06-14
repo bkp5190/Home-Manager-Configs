@@ -34,10 +34,14 @@ set -g @plugin 'tmux-plugins/tmux-sensible'
 # Vim tmux navigator
 set -g @plugin 'christoomey/vim-tmux-navigator'
 
-# Catppuccin for tmux
+# Work with p10k
+set -g default-terminal "screen-256color"
+set -ga terminal-overrides ",xterm-256color:Tc"
+
+# # Catppuccin for tmux
 set -g @plugin 'catppuccin/tmux'
 
-# Configs for Catppuccin tmux
+# # Configs for Catppuccin tmux
 set -g @catppuccin_window_right_separator "█ "
 set -g @catppuccin_window_number_position "right"
 set -g @catppuccin_window_middle_separator " | "
