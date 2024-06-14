@@ -158,6 +158,23 @@ in
           silent = true;
         };
       }
+      # Diffview open comparing in git
+      {
+        action = ":DiffviewOpen<CR>";
+        key = "<leader>do";
+        options = {
+          silent = true;
+        };
+      }
+      # Diffview close comparing in git
+      {
+        action = ":DiffviewClose<CR>";
+        key = "<leader>dp";
+        options = {
+          silent = true;
+        };
+      }
+
 
     ];
   
@@ -228,6 +245,8 @@ in
         extensions = {
           file-browser.enable = true;
           undo.enable = true;
+
+          # Undo tree extension
           undo.settings = {
             mappings = {
               i = {
