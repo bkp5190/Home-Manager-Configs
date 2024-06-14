@@ -65,12 +65,12 @@ in
       "github.com" = {
         hostname = "github.com";
         user = "bkp5190";
-        identityFile = "~/.ssh/id_ed25519.pub";
+        identityFile = "~/.ssh/id_ed25519";
       };
       "github.gatech.edu" = {
         hostname = "github.gatech.edu";
         user = "bpatel347";
-        identityFile = "~/.ssh/id_rsa.pub";
+        identityFile = "~/.ssh/id_rsa";
       };
     };
   };
