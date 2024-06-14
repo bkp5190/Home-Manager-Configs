@@ -27,12 +27,6 @@ in
     LANG = "en_US.UTF-8";
   };
 
-  # Define user-specific aliases.
-  home.shellAliases = {
-    lg = "lazygit";
-    v = "nvim";
-  };
-
   # Enable custom fonts
   fonts.fontconfig.enable = true;
 
@@ -79,6 +73,10 @@ in
   };
 
   programs.zsh = {
+    shellAliases = {
+      lg = "lazygit";
+      v = "nvim";
+    };
     zplug = {
       enable = true;
       plugins = [
@@ -210,6 +208,22 @@ in
       {
         action = ":DiffviewClose<CR>";
         key = "<leader>dp";
+        options = {
+          silent = true;
+        };
+      }
+      # Harpoon add
+      {
+        action = "function() harpoon:list():add() end";
+        key = "<leader>ha";
+        options = {
+          silent = true;
+        };
+      }
+      # Harpoon toggle
+      {
+        action = "function() harpoon.ui:toggle_quick_menu(harpoon:list()) end";
+        key = "<leader>ht";
         options = {
           silent = true;
         };
