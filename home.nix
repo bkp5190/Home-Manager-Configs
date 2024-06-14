@@ -79,14 +79,14 @@ in
   };
 
   programs.zsh = {
-    enable = true;
-    oh-my-zsh = {
-      theme = "powerlevel10k/powerlevel10k";
+    zplug = {
       enable = true;
-      plugins = [ "git" "z" "sudo" "powerlevel10k"];
+      plugins = [
+        { name = "zsh-users/zsh-autosuggestions"; } # Simple plugin installation
+        { name = "romkatv/powerlevel10k"; tags = [ as:theme depth:1 ]; } # Installations with additional options. For the list of options, please refer to Zplug README.
+      ];
     };
   };
-
   # Tmux configs
   programs.tmux = {
     enable = true;
@@ -150,6 +150,14 @@ in
           silent = true;
         };
       }
+      # Telescope undo tree
+      {
+        action = ":Telescope undo<CR>";
+        key = "<leader>u";
+        options = {
+          silent = true;
+        };
+      }
 
     ];
   
@@ -194,11 +202,6 @@ in
         enable = true;
       };
 
-      # Multiple cursors
-      multicursors = {
-        enable = true;
-      };
-
       # File explorer buffer
       oil = {
         enable = true; 
@@ -222,6 +225,24 @@ in
       # Fuzzy finding and searching
       telescope = {
         enable = true;
+        extensions = {
+          file-browser.enable = true;
+          undo.enable = true;
+          undo.settings = {
+            mappings = {
+              i = {
+                "<c-cr>" = "require('telescope-undo.actions').restore";
+                "<cr>" = "require('telescope-undo.actions').yank_additions";
+                "<s-cr>" = "require('telescope-undo.actions').yank_deletions";
+              };
+              n = {
+                Y = "require('telescope-undo.actions').yank_deletions";
+                u = "require('telescope-undo.actions').restore";
+                y = "require('telescope-undo.actions').yank_additions";
+              };
+            };
+          };
+        };
       };
 
       # Render markdown files while editing
@@ -246,6 +267,11 @@ in
 
       # Treesitter for rainbow delimiters
       treesitter = {
+        enable = true;
+      };
+
+      # Diff view to compare in git
+      diffview = {
         enable = true;
       };
 
