@@ -334,6 +334,22 @@ in
         enable = true;
       };
 
+      # Focus on certain portions of code
+      twilight = {
+        enable = true;
+      };
+
+      # Indenting help
+      indent-o-matic = {
+        enable = true;
+      };
+
+      # Quick swap files
+      harpoon = {
+        enable = true;
+        enableTelescope = true;
+      };
+
       # Language server protocols
       lsp = {
         enable = true;
