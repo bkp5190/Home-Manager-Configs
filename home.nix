@@ -44,6 +44,10 @@ in
     reattach-to-user-namespace
     direnv
     devbox
+    # Nix curl
+    nurl
+    # File directories
+    tree
   ];
 
   # Enable and configure some basic programs.
@@ -85,6 +89,7 @@ in
       lg = "lazygit";
       v = "nvim";
       c = "clear";
+      s = "web_search duckduckgo";
     };
     oh-my-zsh.enable = true;
     oh-my-zsh.extraConfig = builtins.readFile ./extraConfig.zsh;
@@ -94,7 +99,11 @@ in
       [[ ! -r "$P10K_INSTANT_PROMPT" ]] || source "$P10K_INSTANT_PROMPT"
     '';
 
+    # Additional oh-my-zsh plugins
+    oh-my-zsh.plugins = ["web-search" "copyfile" "copybuffer" "colorize"];
+
     plugins = with pkgs; [
+      # Powerlevel10k theme
       {
         file = "powerlevel10k.zsh-theme";
         name = "powerlevel10k";
@@ -105,6 +114,7 @@ in
         name = "powerlevel10k-config";
         src = ./.p10k.zsh;
       }
+      # Autocompletions
       {
         name = "zsh-autosuggestions";
         src = pkgs.fetchFromGitHub {
@@ -114,14 +124,24 @@ in
           sha256 = "0z6i9wjjklb4lvr7zjhbphibsyx51psv50gm07mbb0kj9058j6kc";
         };
       }
+      # Completion scroll
       {
-        name = "enhancd";
-        file = "init.sh";
+        name = "zsh-completions";
         src = pkgs.fetchFromGitHub {
-          owner = "b4b4r07";
-          repo = "enhancd";
-          rev = "v2.2.1";
-          sha256 = "0iqa9j09fwm6nj5rpip87x3hnvbbz9w9ajgm6wkrd5fls8fn8i5g";
+          owner = "zsh-users";
+          repo = "zsh-completions";
+          rev = "0.35.0";
+          hash = "sha256-GFHlZjIHUWwyeVoCpszgn4AmLPSSE8UVNfRmisnhkpg=";
+        };
+      }
+      # Highlight commands in terminal
+      {
+        name = "zsh-syntax-highlighting";
+        src = pkgs.fetchFromGitHub {
+          owner = "zsh-users";
+          repo = "zsh-syntax-highlighting";
+          rev = "0.8.0";
+          hash = "sha256-iJdWopZwHpSyYl5/FQXEW7gl/SrKaYDEtTH9cGP7iPo=";
         };
       }
     ];
@@ -153,6 +173,15 @@ in
           silent = true;
         };
       }
+      # Go to definition
+      {
+        action = ":lua vim.lsp.buf.definition()<CR>";
+        key = "<leader>gd";
+        options = {
+          silent = true;
+          noremap = true;
+        };
+      }
       # git blame open URL
       {
         action = ":GitBlameOpenCommitURL<CR>";
@@ -171,7 +200,7 @@ in
       }
       # markdown preview mapping
       {
-        action = ":PreviewMarkdown<CR>";
+        action = ":MarkdownPreview<CR>";
         key = "<leader>pm";
         options = {
           silent = true;
@@ -257,6 +286,14 @@ in
           silent = true;
         };
       }
+      # Trouble LSP Definitions
+      {
+        action = ":Trouble lsp toggle focus=false win.position=right<CR>";
+        key = "<leader>tl";
+        options = {
+          silent = true;
+        };
+      }
       # # Harpoon add
       # {
       #   action = "function() harpoon:list():add() end";
@@ -303,8 +340,18 @@ in
     # Neovim plugins
     plugins = {
 
+      # Trouble
+      trouble = {
+        enable = true;
+      };
+
       # Nix
       nix = {
+        enable = true;
+      };
+
+      # Nix reload dev in neovim
+      nix-develop = {
         enable = true;
       };
 
@@ -423,17 +470,20 @@ in
 	  # Markdown
 	  marksman.enable = true;
 
-	  # Bash
-	  bashls.enable = true;
-
 	};
       };
+
     };
 
-    extraPlugins = with pkgs.vimPlugins;
-      [
-        nvim-web-devicons
-      ];
+    extraPlugins = [(pkgs.vimUtils.buildVimPlugin {
+      name = "coc.nvim";
+      src = pkgs.fetchFromGitHub {
+          owner = "neoclide";
+          repo = "coc.nvim";
+          rev = "v0.0.82";
+          hash = "sha256-TIkx/Sp9jnRd+3jokab91S5Mb3JV8yyz3wy7+UAd0A0=";
+        };
+    })];
   };
 
 }
