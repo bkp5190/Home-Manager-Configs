@@ -48,6 +48,8 @@ in
     nurl
     # File directories
     tree
+    # Dotnet for Unity and C#
+    dotnet-sdk_8
   ];
 
   # Enable and configure some basic programs.
@@ -349,6 +351,51 @@ in
     # Neovim plugins
     plugins = {
 
+      # Nvim completion
+      cmp = {
+        enable = true;
+        autoEnableSources = false;
+        settings = {
+          sources = {
+            __raw = ''
+              cmp.config.sources({
+                {name = 'nvim_lsp'},
+                {name = 'path'},
+                {name = 'luasnip'},
+                {name = 'cmdline'},
+                }, {
+              {name = 'buffer'},
+              })
+            '';
+          };
+        };
+      };
+
+      # Nvim completion LSP
+      cmp-nvim-lsp = {
+        enable = true;
+      };
+
+      # Nvim completion buffer
+      cmp-buffer = {
+        enable = true;
+      };
+
+      # Nvim completion path
+      cmp-path = {
+        enable = true;
+      };
+
+      # Nvim completion path
+      cmp-cmdline = {
+        enable = true;
+      };
+
+      # Nvim completion path
+      cmp_luasnip = {
+        enable = true;
+      };
+
       # Bottom terminal line
       lualine = {
         enable = true;
@@ -473,6 +520,8 @@ in
       # Language server protocols
       lsp = {
         enable = true;
+        inlayHints = true;
+        capabilities = "require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())";
 	servers = {
 
 	  # Nix LSP
@@ -488,17 +537,5 @@ in
       };
 
     };
-
-    extraPlugins = [(pkgs.vimUtils.buildVimPlugin {
-      name = "coc.nvim";
-      src = pkgs.fetchFromGitHub {
-          owner = "neoclide";
-          repo = "coc.nvim";
-          rev = "v0.0.82";
-          hash = "sha256-TIkx/Sp9jnRd+3jokab91S5Mb3JV8yyz3wy7+UAd0A0=";
-        };
-    })];
   };
-
 }
-
