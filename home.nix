@@ -62,7 +62,7 @@ in
   };
 
   programs.ssh = {
-    enable = true;
+    enable = false;
     forwardAgent = true;
     addKeysToAgent = "yes";
     matchBlocks = {
@@ -74,7 +74,7 @@ in
       "github.gatech.edu" = {
         hostname = "github.gatech.edu";
         user = "bpatel347";
-        identityFile = "~/.ssh/id_rsa";
+        identityFile = "~/.ssh/ga_id_ed25519";
       };
     };
   };
@@ -177,6 +177,15 @@ in
       {
         action = ":lua vim.lsp.buf.definition()<CR>";
         key = "<leader>gd";
+        options = {
+          silent = true;
+          noremap = true;
+        };
+      }
+      # Go to references
+      {
+        action = ":lua vim.lsp.buf.references()<CR>";
+        key = "<leader>gr";
         options = {
           silent = true;
           noremap = true;
@@ -339,6 +348,11 @@ in
     };
     # Neovim plugins
     plugins = {
+
+      # Bottom terminal line
+      lualine = {
+        enable = true;
+      };
 
       # Trouble
       trouble = {
