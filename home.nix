@@ -58,6 +58,7 @@ in {
     dotnet-sdk_8
     vale
     tflint
+    pylint
     # CLI tools
     fzf
     thefuck
