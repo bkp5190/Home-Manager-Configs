@@ -37,6 +37,7 @@
       };
 
       nvim-autopairs.enable = true;
+      none-ls.enable = true;
 
       trim = {
         enable = true;

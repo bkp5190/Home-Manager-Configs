@@ -56,9 +56,14 @@ in {
     tree
     # Dotnet for Unity and C#
     dotnet-sdk_8
+    neovim-remote
+    xclip
     vale
     tflint
     pylint
+    go
+    gopls
+    golangci-lint
     # CLI tools
     fzf
     thefuck
@@ -67,6 +72,7 @@ in {
     delta
     tldr
     zoxide
+    fd
   ];
 
   programs = {

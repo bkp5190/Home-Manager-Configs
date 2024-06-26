@@ -4,6 +4,9 @@
 
     plugins = {
       luasnip.enable = true;
+      cmp-omni.enable = true;
+      cmp-dap.enable = true;
+      cmp-nvim-lsp.enable = true;
 
       lspkind = {
         enable = true;

@@ -24,11 +24,13 @@
 
         servers = {
           gopls.enable = true;
+          golangci-lint-ls.enable = true;
           lua-ls.enable = true;
           nil-ls.enable = true;
           pyright.enable = true;
           tflint.enable = true;
           terraformls.enable = true;
+          omnisharp.enable = true;
         };
       };
     };
