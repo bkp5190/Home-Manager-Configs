@@ -12,3 +12,5 @@ _fzf_comprun() {
 }
 
 eval "$(zoxide init zsh)"
+eval "$(devbox global shellenv --init-hook)"
+eval "$(direnv hook zsh)"

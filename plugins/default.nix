@@ -19,11 +19,8 @@
 
   programs.nixvim = {
     colorschemes = {
-      catppuccin = {
+      tokyonight = {
         enable = true;
-        settings = {
-          flavour = "macchiato";
-        };
       };
     };
 

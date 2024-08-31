@@ -48,8 +48,6 @@ in {
     zsh-powerlevel10k
     # Allow copying to clipboard from tmux
     reattach-to-user-namespace
-    direnv
-    devbox
     # Nix curl
     nurl
     # File directories
@@ -73,11 +71,16 @@ in {
     tldr
     zoxide
     fd
+    # Python linter
+    ruff
   ];
 
   programs = {
     # Enable Home Manager to manage your home directory.
     home-manager.enable = true;
+
+    # direnv
+    direnv.enable = true;
 
     # Enable and configure some basic programs.
     git = {
@@ -183,6 +186,17 @@ in {
       initExtra = ''        ;
                 [[ ! -f ~/.config/home-manager/.p10k.zsh ]] || source ~/.config/home-manager/.p10k.zsh
       '';
+    };
+
+    # Atuin
+    atuin = {
+      enable = true;
+      enableZshIntegration = true;
+      settings = {
+        dialect = "us";
+        style = "compact";
+        inline_height = 15;
+      };
     };
 
     # Tmux configs
