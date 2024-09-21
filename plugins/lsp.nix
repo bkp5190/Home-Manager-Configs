@@ -28,6 +28,7 @@
           lua-ls.enable = true;
           nil-ls.enable = true;
           pyright.enable = true;
+          pylsp.enable = true;
           tflint.enable = true;
           terraformls.enable = true;
           omnisharp.enable = true;

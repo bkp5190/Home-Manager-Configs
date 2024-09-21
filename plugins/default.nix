@@ -19,7 +19,7 @@
 
   programs.nixvim = {
     colorschemes = {
-      tokyonight = {
+      gruvbox = {
         enable = true;
       };
     };
