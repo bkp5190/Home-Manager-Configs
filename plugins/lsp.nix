@@ -1,6 +1,9 @@
 {
   programs.nixvim = {
     plugins = {
+      lsp-lines = {
+        enable = true;
+      };
       lsp = {
         enable = true;
 
@@ -24,14 +27,12 @@
 
         servers = {
           gopls.enable = true;
-          golangci-lint-ls.enable = true;
-          lua-ls.enable = true;
-          nil-ls.enable = true;
+          golangci_lint_ls.enable = true;
+          lua_ls.enable = true;
+          nil_ls.enable = true;
           pyright.enable = true;
           pylsp.enable = true;
           tflint.enable = true;
-          terraformls.enable = true;
-          omnisharp.enable = true;
         };
       };
     };

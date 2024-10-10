@@ -109,7 +109,7 @@
       # Telescope quickfixlist
       {
         action = ":Telescope quickfix<CR>";
-        key = "<leader>q";
+        key = "<leader>ql";
         options = {
           silent = true;
         };
@@ -136,6 +136,25 @@
         key = "<leader>dp";
         options = {
           silent = true;
+        };
+      }
+      # Mapping q for recording macros
+      {
+        action = "q";
+        key = "q";
+        options = {
+          silent = true;
+          noremap = true;
+        };
+      }
+
+      # Mapping Ctrl+V for block visual mode
+      {
+        action = "<C-v>";
+        key = "<C-v>";
+        options = {
+          silent = true;
+          noremap = true;
         };
       }
     ];

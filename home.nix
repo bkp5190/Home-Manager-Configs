@@ -52,9 +52,6 @@ in {
     nurl
     # File directories
     tree
-    # Dotnet for Unity and C#
-    dotnet-sdk_8
-    neovim-remote
     xclip
     vale
     tflint
@@ -73,6 +70,10 @@ in {
     fd
     # Python linter
     ruff
+    pyright
+    # Passwords
+    pass
+    gnupg
   ];
 
   programs = {
@@ -85,8 +86,8 @@ in {
     # Enable and configure some basic programs.
     git = {
       enable = true;
-      userName = "bkp5190";
-      userEmail = "boneypatel37@yahoo.com";
+      userName = "bpatel347";
+      userEmail = "bpatel347@gatech.edu";
 
       extraConfig = {
         init.defaultBranch = "main";
@@ -94,18 +95,17 @@ in {
     };
 
     ssh = {
-      enable = false;
-      forwardAgent = true;
+      enable = true;
       addKeysToAgent = "yes";
       matchBlocks = {
         "github.com" = {
           hostname = "github.com";
-          user = "bkp5190";
+          user = "git";
           identityFile = "~/.ssh/id_ed25519";
         };
         "github.gatech.edu" = {
           hostname = "github.gatech.edu";
-          user = "bpatel347";
+          user = "git";
           identityFile = "~/.ssh/ga_id_ed25519";
         };
       };
