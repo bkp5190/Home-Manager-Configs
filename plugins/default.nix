@@ -15,6 +15,7 @@
     ./toggleterm.nix
     ./tree-sitter.nix
     ./which-key.nix
+    ./tmux-navigator.nix
   ];
 
   programs.nixvim = {
@@ -70,6 +71,8 @@
           change.text = "~";
         };
       };
+
+      transparent.enable = true;
 
       web-devicons.enable = true;
 
