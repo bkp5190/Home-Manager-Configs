@@ -29,6 +29,61 @@ bind m next-window
 
 # List of plugins
 set -g @plugin 'tmux-plugins/tpm'
+set-option -g @plugin 'b0o/tmux-autoreload'
+### PLUGINS ###
+set -g @plugin 'o0th/tmux-nova'
+set -g @plugin 'tmux-plugins/tmux-cpu'
+set -g @plugin 'tmux-plugins/tmux-battery'
+set -g @plugin 'ofirgall/tmux-keyboard-layout'
+
+### THEME ###
+set -g @nova-nerdfonts true
+set -g @nova-nerdfonts-left 
+set -g @nova-nerdfonts-right 
+
+set -g @nova-pane "#I #W"
+set -g @nova-rows 0
+
+### COLORS ###
+b_bg="#504945"
+
+seg_a="#a89984 #282828"
+seg_b="$b_bg #ddc7a1"
+
+inactive_bg="#32302f"
+inactive_fg="#ddc7a1"
+active_bg=$b_bg
+active_fg="#ddc7a1"
+
+set -gw window-status-current-style bold
+set -g "@nova-status-style-bg" "$inactive_bg"
+set -g "@nova-status-style-fg" "$inactive_fg"
+set -g "@nova-status-style-active-bg" "$active_bg"
+set -g "@nova-status-style-active-fg" "$active_fg"
+
+set -g "@nova-pane-active-border-style" "#44475a"
+set -g "@nova-pane-border-style" "#827d51"
+
+### STATUS BAR ###
+set -g @nova-segment-prefix "#{?client_prefix,PREFIX,}"
+set -g @nova-segment-prefix-colors "$seg_b"
+
+set -g @nova-segment-session "#{session_name}"
+set -g @nova-segment-session-colors "$seg_a"
+
+set -g @nova-segment-whoami "#(whoami)@#h"
+set -g @nova-segment-whoami-colors "$seg_a"
+
+set -g @batt_icon_status_charging '↑'
+set -g @batt_icon_status_discharging '↓'
+set -g @nova-segment-battery "#{battery_icon_status} #{battery_percentage}"
+set -g @nova-segment-battery-colors "$seg_b"
+
+set -g @nova-segment-layout "#(~/.tmux/plugins/tmux-keyboard-layout/scripts/get_keyboard_layout.sh)"
+set -g @nova-segment-layout-colors "$seg_a"
+
+set -g @nova-segments-0-left "session"
+set -g @nova-segments-0-right "prefix cpu battery layout whoami"
 set -g @plugin 'tmux-plugins/tmux-sensible'
 
 # Vim tmux navigator
@@ -38,27 +93,8 @@ set -g @plugin 'christoomey/vim-tmux-navigator'
 set -g default-terminal "screen-256color"
 set -ga terminal-overrides ",xterm-256color:Tc"
 
-# # Catppuccin for tmux
-set -g @plugin 'catppuccin/tmux'
-
-# # Configs for Catppuccin tmux
-set -g @catppuccin_window_right_separator "█ "
-set -g @catppuccin_window_number_position "right"
-set -g @catppuccin_window_middle_separator " | "
-
-set -g @catppuccin_window_default_fill "none"
-
-set -g @catppuccin_window_current_fill "all"
-
-set -g @catppuccin_status_modules_right "application session"
-set -g @catppuccin_status_left_separator "█"
-set -g @catppuccin_status_right_separator "█"
-
-# Other examples:
-# set -g @plugin 'github_username/plugin_name'
-# set -g @plugin 'github_username/plugin_name#branch'
-# set -g @plugin 'git@github.com:user/plugin'
-# set -g @plugin 'git@bitbucket.com:user/plugin'
+# set -g @plugin 'egel/tmux-gruvbox'
+# set -g @tmux-gruvbox 'dark' # or 'light', 'dark-transparent', 'light-transparent'
 
 # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
 run '~/.tmux/plugins/tpm/tpm'

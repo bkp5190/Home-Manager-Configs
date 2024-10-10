@@ -80,7 +80,7 @@
       trim = {
         enable = true;
         settings = {
-          highlight = true;
+          highlight = false;
           ft_blocklist = [
             "checkhealth"
             "floaterm"

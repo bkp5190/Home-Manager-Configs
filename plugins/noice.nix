@@ -17,10 +17,10 @@
         view = "mini";
       };
     };
-    # popupmenu = {
-    #   enabled = true;
-    #   backend = "nui";
-    # };
+    popupmenu = {
+      enabled = true;
+      backend = "nui";
+    };
     format = {
       filter = {
         pattern = [":%s*%%s*s:%s*" ":%s*%%s*s!%s*" ":%s*%%s*s/%s*" "%s*s:%s*" ":%s*s!%s*" ":%s*s/%s*"];

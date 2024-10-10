@@ -44,6 +44,7 @@ in {
     wget
     lazygit
     tmux
+    # Telescope
     ripgrep
     zsh-powerlevel10k
     # Allow copying to clipboard from tmux
