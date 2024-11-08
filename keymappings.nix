@@ -14,6 +14,8 @@
         key = "<leader>o";
         options = {
           silent = true;
+          noremap = true;
+          desc = "Oil Mapping";
         };
       }
       # Go to definition
@@ -23,6 +25,7 @@
         options = {
           silent = true;
           noremap = true;
+          desc = "Go to definition";
         };
       }
       # Go to references
@@ -32,6 +35,7 @@
         options = {
           silent = true;
           noremap = true;
+          desc = "Go to references";
         };
       }
       # git blame open URL
@@ -40,6 +44,8 @@
         key = "<leader>gb";
         options = {
           silent = true;
+          noremap = true;
+          desc = "Open git blame URL";
         };
       }
       # lazy git dashboard
@@ -48,6 +54,8 @@
         key = "<leader>lg";
         options = {
           silent = true;
+          noremap = true;
+          desc = "Open lazygit";
         };
       }
       # markdown preview mapping
@@ -56,6 +64,8 @@
         key = "<leader>pm";
         options = {
           silent = true;
+          noremap = true;
+          desc = "Open markdown preview in browser";
         };
       }
       # toggle term floating in neovim
@@ -64,6 +74,8 @@
         key = "<leader>f";
         options = {
           silent = true;
+          noremap = true;
+          desc = "Toggle term floating window";
         };
       }
       # toggle term at the bottom on buffer
@@ -72,6 +84,8 @@
         key = "<leader>b";
         options = {
           silent = true;
+          noremap = true;
+          desc = "Toggle term bottom window";
         };
       }
       # Telescope search (live grep)
@@ -80,6 +94,8 @@
         key = "<leader>sg";
         options = {
           silent = true;
+          noremap = true;
+          desc = "Search grep";
         };
       }
       # Telescope search files
@@ -88,6 +104,8 @@
         key = "<leader>sf";
         options = {
           silent = true;
+          noremap = true;
+          desc = "Search files";
         };
       }
       # Telescope search commands
@@ -96,6 +114,8 @@
         key = "<leader>sc";
         options = {
           silent = true;
+          noremap = true;
+          desc = "Search commands";
         };
       }
       # Telescope diagnostics
@@ -104,6 +124,8 @@
         key = "<leader>d";
         options = {
           silent = true;
+          noremap = true;
+          desc = "Diagnostics";
         };
       }
       # Telescope quickfixlist
@@ -112,6 +134,8 @@
         key = "<leader>ql";
         options = {
           silent = true;
+          noremap = true;
+          desc = "Quickfix list";
         };
       }
       # Telescope undo tree
@@ -120,6 +144,8 @@
         key = "<leader>u";
         options = {
           silent = true;
+          noremap = true;
+          desc = "Undo tree";
         };
       }
       # Diffview open comparing in git
@@ -128,6 +154,8 @@
         key = "<leader>do";
         options = {
           silent = true;
+          noremap = true;
+          desc = "Diffview open";
         };
       }
       # Diffview close comparing in git
@@ -136,6 +164,8 @@
         key = "<leader>dp";
         options = {
           silent = true;
+          noremap = true;
+          desc = "Diffview close";
         };
       }
       # Mapping q for recording macros
@@ -155,6 +185,27 @@
         options = {
           silent = true;
           noremap = true;
+        };
+      }
+
+      # Buffers
+      {
+        action = ":BufferNext<CR>";
+        key = "<Tab>";
+        options = {
+          silent = true;
+          noremap = true;
+          desc = "Next buffer";
+        };
+      }
+
+      {
+        action = ":BufferPrevious<CR>";
+        key = "<S-Tab>";
+        options = {
+          silent = true;
+          noremap = true;
+          desc = "Prev buffer";
         };
       }
     ];

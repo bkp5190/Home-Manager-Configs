@@ -69,12 +69,16 @@ in {
     tldr
     zoxide
     fd
+    # Linting
+    hadolint
     # Python linter
     ruff
     pyright
     # Passwords
     pass
     gnupg
+    # Kitty cli
+    kitty
   ];
 
   programs = {

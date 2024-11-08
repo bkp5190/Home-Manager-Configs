@@ -2,6 +2,7 @@
   imports = [
     ./barbar.nix
     ./comment.nix
+    ./gitblame.nix
     ./harpoon.nix
     ./lazygit.nix
     ./lint.nix
@@ -12,14 +13,20 @@
     ./oil.nix
     ./tagbar.nix
     ./telescope.nix
+    ./tmux-navigator.nix
     ./toggleterm.nix
     ./tree-sitter.nix
     ./which-key.nix
-    ./tmux-navigator.nix
   ];
 
   programs.nixvim = {
     colorschemes = {
+      gruvbox = {
+        enable = false;
+        settings = {
+          transparent_mode = true;
+        };
+      };
       kanagawa = {
         enable = true;
         settings = {

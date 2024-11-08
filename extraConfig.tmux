@@ -95,6 +95,7 @@ set -ga terminal-overrides ",xterm-256color:Tc"
 
 # set -g @plugin 'egel/tmux-gruvbox'
 # set -g @tmux-gruvbox 'dark' # or 'light', 'dark-transparent', 'light-transparent'
+set-option -g allow-passthrough on
 
 # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
 run '~/.tmux/plugins/tpm/tpm'
