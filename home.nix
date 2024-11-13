@@ -51,6 +51,8 @@ in {
     reattach-to-user-namespace
     # Nix curl
     nurl
+    # Nix formatting
+    nixpkgs-fmt
     # File directories
     tree
     xclip
@@ -123,6 +125,7 @@ in {
       dotDir = ".config/zsh";
 
       shellAliases = {
+        hms = "home-manager switch";
         lg = "lazygit";
         v = "nvim";
         c = "clear";
