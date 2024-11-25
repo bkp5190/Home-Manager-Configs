@@ -5,6 +5,7 @@
 }: let
   nixvim = import (builtins.fetchGit {
     url = "https://github.com/nix-community/nixvim";
+    ref = "main";
   });
 in {
   imports = [
@@ -18,7 +19,7 @@ in {
   ];
   # Define the state version, which corresponds to the version of Home Manager
   # you are using. This should be updated whenever you update Home Manager.
-  home.stateVersion = "24.05";
+  home.stateVersion = "25.05";
 
   # Set up some basic settings for the home environment.
   home.username = "boneypatel";
@@ -81,6 +82,8 @@ in {
     gnupg
     # Kitty cli
     kitty
+    aerospace
+    jankyborders
   ];
 
   programs = {
@@ -166,8 +169,8 @@ in {
           src = pkgs.fetchFromGitHub {
             owner = "zsh-users";
             repo = "zsh-autosuggestions";
-            rev = "v0.4.0";
-            sha256 = "0z6i9wjjklb4lvr7zjhbphibsyx51psv50gm07mbb0kj9058j6kc";
+            rev = "v0.7.1";
+            hash = "sha256-vpTyYq9ZgfgdDsWzjxVAE7FZH4MALMNZIFyEOBLm5Qo=";
           };
         }
         # Completion scroll
