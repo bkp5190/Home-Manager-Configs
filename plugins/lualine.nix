@@ -19,7 +19,6 @@
 
           # Show active language server
           {
-            name = "LspStatus";
             __raw = ''
               function()
                   local msg = ""
@@ -40,12 +39,10 @@
             color = {
               fg = "#ffffff";
             };
-            icon = "";
           }
 
           # Add macro recording status to lualine_x section
           {
-            name = "MacroRecording";
             __raw = ''
               function()
                   local recording_register = vim.fn.reg_recording()
@@ -59,7 +56,6 @@
             color = {
               fg = "#ff0000"; # Red color to make it noticeable
             };
-            icon = "⏺"; # Optional: A recording icon
           }
           "encoding"
           "fileformat"

@@ -30,7 +30,7 @@ in {
     EDITOR = "nvim";
     VISUAL = "nvim";
     LANG = "en_US.UTF-8";
-    FZF_CTRL_T_OPTS = "--preview 'bat -n --color=always --line-range :500 {}'";
+    FZF_CTRL_T_OPTS = "--preview 'bat -n --color=always --theme='Catppuccin Mocha' --line-range :500 {}'";
     FZF_ALT_C_OPTS = "--preview 'eza --tree --color=always {} | head -200'";
   };
 
@@ -54,6 +54,7 @@ in {
     nurl
     # Nix formatting
     nixpkgs-fmt
+    nixpkgs-review
     # File directories
     tree
     xclip
@@ -84,6 +85,9 @@ in {
     kitty
     aerospace
     jankyborders
+    gh
+    # tmux replacement
+    zellij
   ];
 
   programs = {
@@ -227,6 +231,9 @@ in {
       vimAlias = true;
 
       luaLoader.enable = true;
+
+    starship = {
+      enable = true;
     };
   };
 }
