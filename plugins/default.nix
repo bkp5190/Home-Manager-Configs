@@ -4,6 +4,7 @@
     ./comment.nix
     ./gitblame.nix
     ./harpoon.nix
+    ./indent-o-matic.nix
     ./lazygit.nix
     ./lint.nix
     ./lsp.nix
@@ -13,7 +14,6 @@
     ./oil.nix
     ./tagbar.nix
     ./telescope.nix
-    ./tmux-navigator.nix
     ./toggleterm.nix
     ./tree-sitter.nix
     ./which-key.nix
@@ -24,11 +24,25 @@
       gruvbox = {
         enable = false;
         settings = {
-          transparent_mode = true;
+          transparent_mode = false;
         };
       };
-      kanagawa = {
+
+      catppuccin = {
         enable = true;
+        settings = {
+          flavour = "mocha";
+            integrations = {
+                            cmp = true;
+    gitsigns = true;
+    nvimtree = true;
+    treesitter = true;
+    notify = false;
+                    };
+                };
+      };
+      kanagawa = {
+        enable = false;
         settings = {
           colors = {
             palette = {
@@ -79,7 +93,7 @@
         };
       };
 
-      transparent.enable = true;
+      transparent.enable = false;
 
       web-devicons.enable = true;
 

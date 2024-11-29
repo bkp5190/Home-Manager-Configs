@@ -1,5 +1,4 @@
 {
-  config,
   pkgs,
   ...
 }: let
@@ -47,7 +46,7 @@ in {
     tmux
     # Telescope
     ripgrep
-    zsh-powerlevel10k
+    # zsh-powerlevel10k
     # Allow copying to clipboard from tmux
     reattach-to-user-namespace
     # Nix curl
@@ -88,6 +87,7 @@ in {
     gh
     # tmux replacement
     zellij
+    mousecape
   ];
 
   programs = {
@@ -144,29 +144,29 @@ in {
       };
       oh-my-zsh = {
         enable = true;
-        extraConfig = builtins.readFile ./extraConfig.zsh;
+        # extraConfig = builtins.readFile ./extraConfig.zsh;
         # Additional oh-my-zsh plugins
         plugins = ["web-search" "copyfile" "copybuffer" "fzf" "thefuck" ];
       };
 
-      initExtraBeforeCompInit = ''
-        # p10k instant prompt
-        local P10K_INSTANT_PROMPT="${config.xdg.cacheHome}/p10k-instant-prompt-''${(%):-%n}.zsh"
-        [[ ! -r "$P10K_INSTANT_PROMPT" ]] || source "$P10K_INSTANT_PROMPT"
-      '';
+      # initExtraBeforeCompInit = ''
+      #   # p10k instant prompt
+      #   local P10K_INSTANT_PROMPT="${config.xdg.cacheHome}/p10k-instant-prompt-''${(%):-%n}.zsh"
+      #   [[ ! -r "$P10K_INSTANT_PROMPT" ]] || source "$P10K_INSTANT_PROMPT"
+      # '';
 
       plugins = with pkgs; [
         # Powerlevel10k theme
-        {
-          file = "powerlevel10k.zsh-theme";
-          name = "powerlevel10k";
-          src = "${zsh-powerlevel10k}/share/zsh-powerlevel10k";
-        }
-        {
-          file = ".p10k.zsh";
-          name = "powerlevel10k-config";
-          src = ./.p10k.zsh;
-        }
+        # {
+        #   file = "powerlevel10k.zsh-theme";
+        #   name = "powerlevel10k";
+        #   src = "${zsh-powerlevel10k}/share/zsh-powerlevel10k";
+        # }
+        # {
+        #   file = ".p10k.zsh";
+        #   name = "powerlevel10k-config";
+        #   src = ./.p10k.zsh;
+        # }
         # Autocompletions
         {
           name = "zsh-autosuggestions";
@@ -231,6 +231,7 @@ in {
       vimAlias = true;
 
       luaLoader.enable = true;
+    };
 
     starship = {
       enable = true;

@@ -6,8 +6,12 @@
       nixvimInjections = true;
 
       folding = true;
-      settings.indent.enable = true;
-      settings.highlight.enable = true;
+      settings = {
+        indent.enable = true;
+        highlight.enable = true;
+        # ensure_installed = "all";
+        auto_install = true;
+      };
     };
 
     treesitter-refactor = {
