@@ -90,6 +90,7 @@ in {
     mousecape
     # Golang templ
     templ
+    tailwindcss
   ];
 
   programs = {
