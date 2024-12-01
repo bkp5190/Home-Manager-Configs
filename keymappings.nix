@@ -68,26 +68,6 @@
           desc = "Open markdown preview in browser";
         };
       }
-      # toggle term floating in neovim
-      {
-        action = ":ToggleTerm direction=float<CR>";
-        key = "<leader>f";
-        options = {
-          silent = true;
-          noremap = true;
-          desc = "Toggle term floating window";
-        };
-      }
-      # toggle term at the bottom on buffer
-      {
-        action = ":ToggleTerm<CR>";
-        key = "<leader>b";
-        options = {
-          silent = true;
-          noremap = true;
-          desc = "Toggle term bottom window";
-        };
-      }
       # Telescope search (live grep)
       {
         action = ":Telescope live_grep<CR>";
@@ -96,6 +76,36 @@
           silent = true;
           noremap = true;
           desc = "Search grep";
+        };
+      }
+      # Telescope search buffers
+      {
+        action = ":Telescope buffers<CR>";
+        key = "<leader>sb";
+        options = {
+          silent = true;
+          noremap = true;
+          desc = "Search buffers";
+        };
+      }
+      # Telescope buffer
+      {
+        action = ":Telescope current_buffer_fuzzy_find<CR>";
+        key = "<leader>b";
+        options = {
+          silent = true;
+          noremap = true;
+          desc = "Search current buffer";
+        };
+      }
+      # Telescope search commands
+      {
+        action = ":Telescope command_history<CR>";
+        key = "<leader>sc";
+        options = {
+          silent = true;
+          noremap = true;
+          desc = "Search commands";
         };
       }
       # Telescope search files

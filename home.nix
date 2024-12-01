@@ -88,6 +88,8 @@ in {
     # tmux replacement
     zellij
     mousecape
+    # Golang templ
+    templ
   ];
 
   programs = {

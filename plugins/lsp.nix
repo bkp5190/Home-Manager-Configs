@@ -30,6 +30,10 @@
           pyright.enable = true;
           pylsp.enable = true;
           tflint.enable = true;
+          templ.enable = true;
+          html.enable = true;
+          htmx.enable = true;
+          tailwindcss.enable = true;
         };
       };
     };

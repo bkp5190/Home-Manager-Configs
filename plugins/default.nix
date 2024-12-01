@@ -10,11 +10,11 @@
     ./lsp.nix
     ./lualine.nix
     ./markdown-preview.nix
+    ./nix.nix
     ./noice.nix
     ./oil.nix
     ./tagbar.nix
     ./telescope.nix
-    ./toggleterm.nix
     ./tree-sitter.nix
     ./which-key.nix
   ];
