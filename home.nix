@@ -91,6 +91,10 @@ in {
     # Golang templ
     templ
     tailwindcss
+    gocyclo
+    go-critic
+    gofumpt
+    golangci-lint-langserver
   ];
 
   programs = {
@@ -147,7 +151,7 @@ in {
       };
       oh-my-zsh = {
         enable = true;
-        # extraConfig = builtins.readFile ./extraConfig.zsh;
+        extraConfig = builtins.readFile ./extraConfig.zsh;
         # Additional oh-my-zsh plugins
         plugins = ["web-search" "copyfile" "copybuffer" "fzf" "thefuck" ];
       };
@@ -215,15 +219,6 @@ in {
         style = "compact";
         inline_height = 15;
       };
-    };
-
-    # Tmux configs
-    tmux = {
-      enable = true;
-      clock24 = true;
-      tmuxinator.enable = true;
-
-      extraConfig = builtins.readFile ./extraConfig.tmux;
     };
 
     # Nixvim
