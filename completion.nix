@@ -7,6 +7,9 @@
       cmp-omni.enable = true;
       cmp-dap.enable = true;
       cmp-nvim-lsp.enable = true;
+      cmp-nvim-lsp-document-symbol.enable = true;
+      cmp-nvim-lsp-signature-help.enable = true;
+      cmp-dictionary.enable = true;
 
       lspkind = {
         enable = true;
@@ -20,13 +23,13 @@
             luasnip = "[snip]";
             buffer = "[buffer]";
             neorg = "[neorg]";
-            cmp_tabby = "[Tabby]";
           };
         };
       };
 
       cmp = {
         enable = true;
+        autoEnableSources = true;
 
         settings = {
           snippet.expand = "function(args) require('luasnip').lsp_expand(args.body) end";
@@ -44,7 +47,6 @@
           sources = [
             {name = "path";}
             {name = "nvim_lsp";}
-            {name = "cmp_tabby";}
             {name = "luasnip";}
             {
               name = "buffer";
@@ -55,9 +57,6 @@
           ];
         };
       };
-
-      # cuda
-      cmp-tabby.settings.host = "http://10.10.10.5:8080";
     };
   };
 }

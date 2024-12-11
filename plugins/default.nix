@@ -17,6 +17,7 @@
     ./telescope.nix
     ./tree-sitter.nix
     ./which-key.nix
+    ./web-devicons.nix
   ];
 
   programs.nixvim = {
