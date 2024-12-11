@@ -28,6 +28,7 @@ in {
   home.sessionVariables = {
     EDITOR = "nvim";
     VISUAL = "nvim";
+    TERMINAL = "kitty";
     LANG = "en_US.UTF-8";
     FZF_CTRL_T_OPTS = "--preview 'bat -n --color=always --theme='Catppuccin Mocha' --line-range :500 {}'";
     FZF_ALT_C_OPTS = "--preview 'eza --tree --color=always {} | head -200'";
@@ -80,8 +81,9 @@ in {
     # Passwords
     pass
     gnupg
-    # Kitty cli
-    kitty
+    kitty-themes
+    jetbrains-mono
+    cascadia-code
     aerospace
     jankyborders
     gh
@@ -143,7 +145,7 @@ in {
         lg = "lazygit";
         v = "nvim";
         c = "clear";
-        cat = "bat";
+        cat = "bat --theme='Catppuccin Mocha'";
         fk = "fuck";
         ls = "eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions";
         cd = "z";
@@ -156,24 +158,7 @@ in {
         plugins = ["web-search" "copyfile" "copybuffer" "fzf" "thefuck" ];
       };
 
-      # initExtraBeforeCompInit = ''
-      #   # p10k instant prompt
-      #   local P10K_INSTANT_PROMPT="${config.xdg.cacheHome}/p10k-instant-prompt-''${(%):-%n}.zsh"
-      #   [[ ! -r "$P10K_INSTANT_PROMPT" ]] || source "$P10K_INSTANT_PROMPT"
-      # '';
-
-      plugins = with pkgs; [
-        # Powerlevel10k theme
-        # {
-        #   file = "powerlevel10k.zsh-theme";
-        #   name = "powerlevel10k";
-        #   src = "${zsh-powerlevel10k}/share/zsh-powerlevel10k";
-        # }
-        # {
-        #   file = ".p10k.zsh";
-        #   name = "powerlevel10k-config";
-        #   src = ./.p10k.zsh;
-        # }
+      plugins = [
         # Autocompletions
         {
           name = "zsh-autosuggestions";
@@ -221,7 +206,7 @@ in {
       };
     };
 
-    # Nixvim
+    # Neovim
     nixvim = {
       enable = true;
       defaultEditor = true;
@@ -231,8 +216,26 @@ in {
       luaLoader.enable = true;
     };
 
+    # Starship command history
     starship = {
       enable = true;
+    };
+
+    # Kitty terminal
+    kitty = {
+      enable = true;
+      font = {
+        name = "Cascadia Mono NF";
+        size = 14;
+      };
+      shellIntegration.enableZshIntegration = true;
+      themeFile = "Catppuccin-Macchiato";
+      settings = {
+        background_opacity = 0.9;
+        bold_font = "auto";
+        italic_font = "auto";
+        bold_italic_font = "auto";
+      };
     };
   };
 }

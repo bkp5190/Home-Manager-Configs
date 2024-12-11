@@ -31,15 +31,15 @@
       catppuccin = {
         enable = true;
         settings = {
-          flavour = "mocha";
-            integrations = {
-                            cmp = true;
-    gitsigns = true;
-    nvimtree = true;
-    treesitter = true;
-    notify = false;
-                    };
-                };
+        flavour = "mocha";
+        integrations = {
+          cmp = true;
+          gitsigns = true;
+          nvimtree = true;
+          treesitter = true;
+          notify = false;
+          };
+        };
       };
       kanagawa = {
         enable = false;
@@ -93,7 +93,7 @@
         };
       };
 
-      transparent.enable = false;
+      transparent.enable = true;
 
       web-devicons.enable = true;
 
