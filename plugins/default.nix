@@ -10,6 +10,7 @@
     ./lsp.nix
     ./lualine.nix
     ./markdown-preview.nix
+    ./neoscroll.nix
     ./nix.nix
     ./noice.nix
     ./oil.nix
@@ -22,6 +23,12 @@
 
   programs.nixvim = {
     colorschemes = {
+      monokai-pro = {
+        enable = true;
+      };
+      onedark = {
+        enable = false;
+      };
       gruvbox = {
         enable = false;
         settings = {
@@ -30,7 +37,7 @@
       };
 
       catppuccin = {
-        enable = true;
+        enable = false;
         settings = {
         flavour = "mocha";
         integrations = {

@@ -34,6 +34,7 @@
           html.enable = true;
           htmx.enable = true;
           tailwindcss.enable = true;
+          protols.enable = true;
         };
       };
     };

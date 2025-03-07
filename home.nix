@@ -24,6 +24,8 @@ in {
   home.username = "boneypatel";
   home.homeDirectory = "/Users/boneypatel";
 
+  nixpkgs.config.allowUnfree = true;
+
   # Define the Home Manager environment variables.
   home.sessionVariables = {
     EDITOR = "nvim";
@@ -39,7 +41,6 @@ in {
 
   # Specify the desired packages to install in the user environment.
   home.packages = with pkgs; [
-    vim
     git
     curl
     wget
@@ -97,6 +98,12 @@ in {
     go-critic
     gofumpt
     golangci-lint-langserver
+    air
+    protolint
+    podman
+    podman-compose
+    imagemagick
+    openscad
   ];
 
   programs = {
@@ -229,9 +236,9 @@ in {
         size = 14;
       };
       shellIntegration.enableZshIntegration = true;
-      themeFile = "Catppuccin-Macchiato";
+      themeFile = "Monokai_Pro";
       settings = {
-        background_opacity = 0.9;
+        background_opacity = 1.0;
         bold_font = "auto";
         italic_font = "auto";
         bold_italic_font = "auto";

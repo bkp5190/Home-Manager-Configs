@@ -218,6 +218,51 @@
           desc = "Prev buffer";
         };
       }
+      {
+        action = ":vsplit<CR>";
+        key = "<leader>s";
+        options = {
+          silent = true;
+          noremap = true;
+          desc = "Vertical Split";
+        };
+      }
+      {
+        action = "<C-w>h";
+        key = "<C-h>";
+        options = {
+          silent = true;
+          noremap = true;
+          desc = "Move to the pane on the left";
+        };
+      }
+      {
+        action = "<C-w>j";
+        key = "<C-j>";
+        options = {
+          silent = true;
+          noremap = true;
+          desc = "Move to the pane below";
+        };
+      }
+      {
+        action = "<C-w>k";
+        key = "<C-k>";
+        options = {
+          silent = true;
+          noremap = true;
+          desc = "Move to the pane above";
+        };
+      }
+      {
+        action = "<C-w>l";
+        key = "<C-l>";
+        options = {
+          silent = true;
+          noremap = true;
+          desc = "Move to the pane on the right";
+        };
+      }
     ];
   };
 }
