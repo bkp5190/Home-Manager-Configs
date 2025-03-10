@@ -2,6 +2,7 @@
   imports = [
     ./barbar.nix
     ./comment.nix
+    ./dap.nix
     ./gitblame.nix
     ./harpoon.nix
     ./indent-o-matic.nix
@@ -17,14 +18,18 @@
     ./tagbar.nix
     ./telescope.nix
     ./tree-sitter.nix
+    ./trouble.nix
     ./which-key.nix
     ./web-devicons.nix
   ];
 
   programs.nixvim = {
     colorschemes = {
-      monokai-pro = {
+      nightfox = {
         enable = true;
+      };
+      monokai-pro = {
+        enable = false;
       };
       onedark = {
         enable = false;

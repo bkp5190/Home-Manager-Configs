@@ -92,6 +92,8 @@ in {
     zellij
     mousecape
     # Golang templ
+    delve
+    gotests
     templ
     tailwindcss
     gocyclo
@@ -230,7 +232,7 @@ in {
 
     # Kitty terminal
     kitty = {
-      enable = true;
+      enable = false;
       font = {
         name = "Cascadia Mono NF";
         size = 14;

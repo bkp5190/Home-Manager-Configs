@@ -88,16 +88,6 @@
           desc = "Search buffers";
         };
       }
-      # Telescope buffer
-      {
-        action = ":Telescope current_buffer_fuzzy_find<CR>";
-        key = "<leader>b";
-        options = {
-          silent = true;
-          noremap = true;
-          desc = "Search current buffer";
-        };
-      }
       # Telescope search commands
       {
         action = ":Telescope command_history<CR>";
@@ -126,16 +116,6 @@
           silent = true;
           noremap = true;
           desc = "Search commands";
-        };
-      }
-      # Telescope diagnostics
-      {
-        action = ":Telescope diagnostics<CR>";
-        key = "<leader>d";
-        options = {
-          silent = true;
-          noremap = true;
-          desc = "Diagnostics";
         };
       }
       # Telescope quickfixlist
@@ -255,12 +235,111 @@
         };
       }
       {
+        action = ":Trouble<CR>";
+        key = "<leader>t";
+        options = {
+          silent = true;
+          noremap = true;
+          desc = "Open trouble window";
+        };
+      }
+      {
         action = "<C-w>l";
         key = "<C-l>";
         options = {
           silent = true;
           noremap = true;
           desc = "Move to the pane on the right";
+        };
+      }
+      {
+        key = "<leader>b";
+        action = ":DapToggleBreakpoint<CR>";
+        options = {
+          silent = true;
+          noremap = true;
+          desc = "Toggle breakpoint";
+        };
+      }
+      {
+        key = "<leader>B";
+        action = ":DapClearBreakpoints<CR>";
+        options = {
+          silent = true;
+          noremap = true;
+          desc = "Clear all breakpoints";
+        };
+      }
+      {
+        key = "<leadr>dc";
+        action = ":DapContinue<CR>";
+        options = {
+          silent = true;
+          noremap = true;
+          desc = "Start/Continue debugging";
+        };
+      }
+      {
+        key = "<leader>dso";
+        action = ":DapStepOver<CR>";
+        options = {
+          silent = true;
+          noremap = true;
+          desc = "Step over";
+        };
+      }
+      {
+        key = "<leader>dsi";
+        action = ":DapStepInto<CR>";
+        options = {
+          silent = true;
+          noremap = true;
+          desc = "Step into";
+        };
+      }
+      {
+        key = "<leader>dsO";
+        action = ":DapStepOut<CR>";
+        options = {
+          silent = true;
+          noremap = true;
+          desc = "Step out";
+        };
+      }
+      {
+        key = "<leader>dr";
+        action = "<cmd>lua require('dap').run_to_cursor()<CR>";
+        options = {
+          silent = true;
+          noremap = true;
+          desc = "Run to cursor";
+        };
+      }
+      {
+        key = "<leader>du";
+        action = "<cmd>lua require('dapui').toggle()<CR>";
+        options = {
+          silent = true;
+          noremap = true;
+          desc = "Toggle DAP UI";
+        };
+      }
+      {
+        key = "<leader>dR";
+        action = "<cmd>lua require('dap').restart()<CR>";
+        options = {
+          silent = true;
+          noremap = true;
+          desc = "Restart debugging session";
+        };
+      }
+      {
+        key = "<leader>dT";
+        action = "<cmd>lua require('nvim-dap-virtual-text').refresh()<CR>";
+        options = {
+          silent = true;
+          noremap = true;
+          desc = "Refresh DAP Virtual Text";
         };
       }
     ];
