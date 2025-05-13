@@ -1,5 +1,7 @@
 {
-  programs.nixvim.plugins.noice.settings =
+  programs.nixvim.plugins.noice = {
+    enable = true;
+    settings =
   {
     enable = true;
     notify = {
@@ -10,10 +12,10 @@
     };
     lsp = {
       message = {
-        enabled = false;
+        enabled = true;
       };
       progress = {
-        enabled = false;
+        enabled = true;
         view = "mini";
       };
     };
@@ -32,6 +34,7 @@
         icon = "󱞪";
         lang = "regex";
       };
+    };
     };
   };
 }

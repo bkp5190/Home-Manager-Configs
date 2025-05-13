@@ -334,6 +334,51 @@
         };
       }
       {
+        key = "<localleader>mi";
+        action = "<cmd>MoltenInit<CR>";
+        options = {
+          silent = true;
+          noremap = true;
+          desc = "Initialize the plugin";
+        };
+      }
+      {
+        key = "<leader>ho";
+        action = "<cmd>MoltenHideOutput<CR>";
+        options = {
+          silent = true;
+          noremap = true;
+          desc = "Hide output";
+        };
+      }
+      {
+        key = "<leader>eo";
+        action = "<cmd>noautocmd MoltenEnterOutput<CR>";
+        options = {
+          silent = true;
+          noremap = true;
+          desc = "Enter output";
+        };
+      }
+      {
+        key = "<leader>me";
+        action = "<cmd>MoltenExportOutput!<CR>";
+        options = {
+          silent = true;
+          noremap = true;
+          desc = "Export run output";
+        };
+      }
+      {
+        key = "<leader>qa";
+        action = "<cmd>QuartoActivate<CR>";
+        options = {
+          silent = true;
+          noremap = true;
+          desc = "Quarto Activate";
+        };
+      }
+      {
         key = "<leader>dT";
         action = "<cmd>lua require('nvim-dap-virtual-text').refresh()<CR>";
         options = {

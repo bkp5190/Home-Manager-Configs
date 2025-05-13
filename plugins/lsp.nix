@@ -18,24 +18,37 @@
             gt = "type_definition";
             gi = "implementation";
             K = "hover";
-            "<F2>" = "rename";
+            re = "rename";
           };
         };
 
         servers = {
-          gopls.enable = true;
+          gopls = {
+            enable = true;
+            filetypes = [ "go" "gomod" "gowork" "gotmpl" ];
+            settings =
+              {
+                usePlaceholders = true;
+                completeUnimported = true;
+                completeFunctionCalls = true;
+                staticcheck = true;
+                matcher = "fuzzy";
+                analyses = {
+                  unusedparams = true;
+                  shadow = true;
+                };
+              };
+          };
           golangci_lint_ls.enable = true;
           lua_ls.enable = true;
           nil_ls.enable = true;
           pyright.enable = true;
           pylsp.enable = true;
           tflint.enable = true;
-          templ.enable = true;
-          html.enable = true;
-          htmx.enable = true;
-          tailwindcss.enable = true;
-          protols.enable = true;
         };
+      };
+      lsp-format = {
+        enable = true;
       };
     };
   };

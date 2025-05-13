@@ -10,7 +10,6 @@
           "^__pycache__/"
           "^output/"
           "^data/"
-          "%.ipynb"
         ];
         set_env.COLORTERM = "truecolor";
       };

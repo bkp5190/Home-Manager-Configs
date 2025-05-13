@@ -32,7 +32,7 @@ in {
     VISUAL = "nvim";
     TERMINAL = "kitty";
     LANG = "en_US.UTF-8";
-    FZF_CTRL_T_OPTS = "--preview 'bat -n --color=always --theme='Catppuccin Mocha' --line-range :500 {}'";
+    FZF_CTRL_T_OPTS = "--preview 'bat -n --color=always --line-range :500 {}'";
     FZF_ALT_C_OPTS = "--preview 'eza --tree --color=always {} | head -200'";
   };
 
@@ -66,7 +66,6 @@ in {
     gopls
     golangci-lint
     # CLI tools
-    fzf
     thefuck
     bat
     eza
@@ -106,6 +105,13 @@ in {
     podman-compose
     imagemagick
     openscad
+    tree-sitter
+    fzf
+    nodejs
+    python312Packages.jupytext
+    python312Packages.jupyter-client
+    python312Packages.pynvim
+    quarto
   ];
 
   programs = {
@@ -223,6 +229,69 @@ in {
       vimAlias = true;
 
       luaLoader.enable = true;
+      extraConfigLua = ''
+        -- Quarto runner keymaps (Lua functions)
+        local runner = require("quarto.runner")
+        vim.keymap.set("n", "<leader>rc", runner.run_cell,  { desc = "Run cell", silent = true })
+        vim.keymap.set("n", "<leader>rca", runner.run_above, { desc = "Run cell and above", silent = true })
+        vim.keymap.set("n", "<leader>rA", runner.run_all,   { desc = "Run all cells", silent = true })
+        vim.keymap.set("n", "<leader>rl", runner.run_line,  { desc = "Run line", silent = true })
+        vim.keymap.set("v", "<leader>r",  runner.run_range, { desc = "Run visual range", silent = true })
+        vim.keymap.set("n", "<leader>RA", function()
+          runner.run_all(true)
+        end, { desc = "Run all cells of all languages", silent = true })
+
+        -- Command to create a new empty .ipynb file
+        local default_notebook = [[
+        {
+          "cells": [
+           {
+            "cell_type": "markdown",
+            "metadata": {},
+            "source": [""]
+           }
+          ],
+          "metadata": {
+           "kernelspec": {
+            "display_name": "Python 3",
+            "language": "python",
+            "name": "python3"
+           },
+           "language_info": {
+            "codemirror_mode": {
+              "name": "ipython"
+            },
+            "file_extension": ".py",
+            "mimetype": "text/x-python",
+            "name": "python",
+            "nbconvert_exporter": "python",
+            "pygments_lexer": "ipython3"
+           }
+          },
+          "nbformat": 4,
+          "nbformat_minor": 5
+        }
+        ]]
+
+        local function new_notebook(filename)
+          local path = filename .. ".ipynb"
+          local file = io.open(path, "w")
+          if file then
+            file:write(default_notebook)
+            file:close()
+            vim.cmd("edit " .. path)
+          else
+            print("Error: Could not open new notebook file for writing.")
+          end
+        end
+
+        vim.api.nvim_create_user_command('NewNotebook', function(opts)
+          new_notebook(opts.args)
+        end, {
+          nargs = 1,
+          complete = 'file'
+        })
+      '';
     };
 
     # Starship command history

@@ -1,26 +1,26 @@
 {
   imports = [
     ./barbar.nix
+    ./codesnap.nix
     ./comment.nix
     ./dap.nix
     ./gitblame.nix
     ./harpoon.nix
     ./indent-o-matic.nix
+    ./jupyter.nix
     ./lazygit.nix
     ./lint.nix
     ./lsp.nix
     ./lualine.nix
     ./markdown-preview.nix
-    ./neoscroll.nix
     ./nix.nix
     ./noice.nix
     ./oil.nix
-    ./tagbar.nix
+    ./smear-cursor.nix
     ./telescope.nix
     ./tree-sitter.nix
     ./trouble.nix
     ./which-key.nix
-    ./web-devicons.nix
   ];
 
   programs.nixvim = {

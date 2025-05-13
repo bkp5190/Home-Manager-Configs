@@ -1,6 +1,6 @@
 {
   programs.nixvim.plugins = {
-    web-devicons = {
+    smear-cursor = {
       enable = true;
     };
   };
