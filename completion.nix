@@ -10,6 +10,8 @@
       cmp-nvim-lsp-document-symbol.enable = true;
       cmp-nvim-lsp-signature-help.enable = true;
       cmp-dictionary.enable = true;
+      cmp_luasnip.enable = true;
+      cmp-vim-lsp.enable = true;
 
       lspkind = {
         enable = true;

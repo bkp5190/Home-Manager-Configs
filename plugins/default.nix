@@ -25,13 +25,16 @@
 
   programs.nixvim = {
     colorschemes = {
-      nightfox = {
+      onedark = {
         enable = true;
+        settings = {
+          style = "cool";
+        };
       };
-      monokai-pro = {
+      nightfox = {
         enable = false;
       };
-      onedark = {
+      monokai-pro = {
         enable = false;
       };
       gruvbox = {

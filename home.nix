@@ -61,12 +61,12 @@ in {
     xclip
     vale
     tflint
+    ffmpeg
     pylint
     go
     gopls
     golangci-lint
     # CLI tools
-    thefuck
     bat
     eza
     delta
@@ -112,6 +112,10 @@ in {
     python312Packages.jupyter-client
     python312Packages.pynvim
     quarto
+    graphviz
+    uv
+    dotnet-sdk
+    p7zip
   ];
 
   programs = {
