@@ -6,6 +6,7 @@
     ./dap.nix
     ./gitblame.nix
     ./harpoon.nix
+    ./image.nix
     ./indent-o-matic.nix
     ./jupyter.nix
     ./lazygit.nix
@@ -25,8 +26,23 @@
 
   programs.nixvim = {
     colorschemes = {
-      onedark = {
+      catppuccin = {
         enable = true;
+        settings = {
+          flavour = "macchiato";
+          integrations = {
+            cmp = true;
+            gitsigns = true;
+            treesitter = true;
+            notify = true;
+            mini = {
+              enabled = true;
+            };
+          };
+        };
+      };
+      onedark = {
+        enable = false;
         settings = {
           style = "cool";
         };
@@ -41,20 +57,6 @@
         enable = false;
         settings = {
           transparent_mode = false;
-        };
-      };
-
-      catppuccin = {
-        enable = false;
-        settings = {
-        flavour = "mocha";
-        integrations = {
-          cmp = true;
-          gitsigns = true;
-          nvimtree = true;
-          treesitter = true;
-          notify = false;
-          };
         };
       };
       kanagawa = {

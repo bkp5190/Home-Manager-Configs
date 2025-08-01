@@ -1,12 +1,16 @@
 {
   pkgs,
   ...
-}: let
-  nixvim = import (builtins.fetchGit {
-    url = "https://github.com/nix-community/nixvim";
-    ref = "main";
-  });
-in {
+}:
+let
+  nixvim = import (
+    builtins.fetchGit {
+      url = "https://github.com/nix-community/nixvim";
+      ref = "main";
+    }
+  );
+in
+{
   imports = [
     nixvim.homeManagerModules.nixvim
     ./autocommands.nix
@@ -59,7 +63,6 @@ in {
     # File directories
     tree
     xclip
-    vale
     tflint
     ffmpeg
     pylint
@@ -174,7 +177,12 @@ in {
         enable = true;
         extraConfig = builtins.readFile ./extraConfig.zsh;
         # Additional oh-my-zsh plugins
-        plugins = ["web-search" "copyfile" "copybuffer" "fzf" "thefuck" ];
+        plugins = [
+          "web-search"
+          "copyfile"
+          "copybuffer"
+          "fzf"
+        ];
       };
 
       plugins = [
@@ -209,7 +217,8 @@ in {
           };
         }
       ];
-      initExtra = ''        ;
+      initExtra = ''
+        ;
                 [[ ! -f ~/.config/home-manager/.p10k.zsh ]] || source ~/.config/home-manager/.p10k.zsh
       '';
     };

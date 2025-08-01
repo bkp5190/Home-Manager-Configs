@@ -19,7 +19,7 @@
 
       # Line numbers
       relativenumber = true; # Relative line numbers
-      # number = true; # Display the absolute line number of the current line
+      number = true; # Display the absolute line number of the current line
       hidden = true; # Keep closed buffer open in the background
       mouse = "a"; # Enable mouse control
       mousemodel = "extend"; # Mouse right-click extends the current selection
