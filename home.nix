@@ -3,23 +3,8 @@
   ...
 }:
 let
-  nixvim = import (
-    builtins.fetchGit {
-      url = "https://github.com/nix-community/nixvim";
-      ref = "main";
-    }
-  );
 in
 {
-  imports = [
-    nixvim.homeManagerModules.nixvim
-    ./autocommands.nix
-    ./completion.nix
-    ./keymappings.nix
-    ./options.nix
-    ./plugins
-    ./todo.nix
-  ];
   # Define the state version, which corresponds to the version of Home Manager
   # you are using. This should be updated whenever you update Home Manager.
   home.stateVersion = "25.05";
@@ -49,7 +34,6 @@ in
     curl
     wget
     lazygit
-    tmux
     # Telescope
     ripgrep
     # zsh-powerlevel10k
@@ -96,8 +80,6 @@ in
     # Golang templ
     delve
     gotests
-    templ
-    tailwindcss
     gocyclo
     go-critic
     gofumpt
@@ -107,21 +89,29 @@ in
     podman
     podman-compose
     imagemagick
-    openscad
     tree-sitter
     fzf
     nodejs
     python312Packages.jupytext
     python312Packages.jupyter-client
     python312Packages.pynvim
+    python312Packages.debugpy
     quarto
     graphviz
     uv
-    dotnet-sdk
     p7zip
+    neovim
+    lua5_1
+    uv
+    gradle
   ];
 
   programs = {
+
+    java = {
+      enable = true;
+      package = pkgs.openjdk17;
+    };
     # Enable Home Manager to manage your home directory.
     home-manager.enable = true;
 
@@ -217,7 +207,7 @@ in
           };
         }
       ];
-      initExtra = ''
+      initContent = ''
         ;
                 [[ ! -f ~/.config/home-manager/.p10k.zsh ]] || source ~/.config/home-manager/.p10k.zsh
       '';
@@ -234,79 +224,94 @@ in
       };
     };
 
-    # Neovim
-    nixvim = {
-      enable = true;
-      defaultEditor = true;
-      viAlias = true;
-      vimAlias = true;
-
-      luaLoader.enable = true;
-      extraConfigLua = ''
-        -- Quarto runner keymaps (Lua functions)
-        local runner = require("quarto.runner")
-        vim.keymap.set("n", "<leader>rc", runner.run_cell,  { desc = "Run cell", silent = true })
-        vim.keymap.set("n", "<leader>rca", runner.run_above, { desc = "Run cell and above", silent = true })
-        vim.keymap.set("n", "<leader>rA", runner.run_all,   { desc = "Run all cells", silent = true })
-        vim.keymap.set("n", "<leader>rl", runner.run_line,  { desc = "Run line", silent = true })
-        vim.keymap.set("v", "<leader>r",  runner.run_range, { desc = "Run visual range", silent = true })
-        vim.keymap.set("n", "<leader>RA", function()
-          runner.run_all(true)
-        end, { desc = "Run all cells of all languages", silent = true })
-
-        -- Command to create a new empty .ipynb file
-        local default_notebook = [[
-        {
-          "cells": [
-           {
-            "cell_type": "markdown",
-            "metadata": {},
-            "source": [""]
-           }
-          ],
-          "metadata": {
-           "kernelspec": {
-            "display_name": "Python 3",
-            "language": "python",
-            "name": "python3"
-           },
-           "language_info": {
-            "codemirror_mode": {
-              "name": "ipython"
-            },
-            "file_extension": ".py",
-            "mimetype": "text/x-python",
-            "name": "python",
-            "nbconvert_exporter": "python",
-            "pygments_lexer": "ipython3"
-           }
-          },
-          "nbformat": 4,
-          "nbformat_minor": 5
-        }
-        ]]
-
-        local function new_notebook(filename)
-          local path = filename .. ".ipynb"
-          local file = io.open(path, "w")
-          if file then
-            file:write(default_notebook)
-            file:close()
-            vim.cmd("edit " .. path)
-          else
-            print("Error: Could not open new notebook file for writing.")
-          end
-        end
-
-        vim.api.nvim_create_user_command('NewNotebook', function(opts)
-          new_notebook(opts.args)
-        end, {
-          nargs = 1,
-          complete = 'file'
-        })
-      '';
-    };
-
+    # tmux = {
+    #   enable = true;
+    #   shell = "${pkgs.writeShellScriptBin "zsh-login" ''
+    #   exec ${pkgs.zsh}/bin/zsh -l
+    #   ''}/bin/zsh-login";
+    #   terminal = "tmux-256color";
+    #   historyLimit = 100000;
+    #   plugins = with pkgs;
+    #     [
+    #       tmux-nvim
+    #       tmuxPlugins.tmux-thumbs
+    #       tmuxPlugins.sensible
+    #       # must be before continuum edits right status bar
+    #       {
+    #         plugin = tmuxPlugins.catppuccin;
+    #         extraConfig = '' 
+    #           set -g @catppuccin_flavour 'frappe'
+    #           set -g @catppuccin_window_tabs_enabled on
+    #           set -g @catppuccin_date_time "%H:%M"
+    #         '';
+    #       }
+    #       {
+    #         plugin = tmuxPlugins.resurrect;
+    #         extraConfig = ''
+    #           set -g @resurrect-strategy-vim 'session'
+    #           set -g @resurrect-strategy-nvim 'session'
+    #           set -g @resurrect-capture-pane-contents 'on'
+    #         '';
+    #       }
+    #       {
+    #         plugin = tmuxPlugins.continuum;
+    #         extraConfig = ''
+    #           set -g @continuum-restore 'on'
+    #           set -g @continuum-boot 'on'
+    #           set -g @continuum-save-interval '10'
+    #         '';
+    #       }
+    #       tmuxPlugins.better-mouse-mode
+    #       tmuxPlugins.yank
+    #     ];
+    #   extraConfig = ''
+    #     set -g default-terminal "tmux-256color"
+    #     set -ag terminal-overrides ",xterm-256color:RGB"
+    #     set-option -g prefix M-space
+    #     unbind C-b
+    #     bind M-space send-prefix
+    #
+    #     set -g mouse on
+    #     set-option -g set-clipboard on
+    #
+    #     setw -g mode-keys vi
+    #
+    #     bind -T copy-mode-vi v send -X begin-selection
+    #     bind -T copy-mode-vi y send -X copy-selection-and-cancel
+    #     bind -T copy-mode-vi C-v send -X rectangle-toggle
+    #     bind Escape copy-mode
+    #
+    #     unbind '"'
+    #     unbind %
+    #     bind | split-window -h -c "#{pane_current_path}"
+    #     bind - split-window -v -c "#{pane_current_path}"
+    #
+    #     bind -n M-h select-pane -L
+    #     bind -n M-j select-pane -D
+    #     bind -n M-k select-pane -U
+    #     bind -n M-l select-pane -R
+    #
+    #     bind -n M-Left  previous-window
+    #     bind -n M-Right next-window
+    #
+    #     bind -n M-h resize-pane -L 5
+    #     bind -n M-l resize-pane -R 5
+    #     bind -n M-j resize-pane -D 2
+    #     bind -n M-k resize-pane -U 2
+    #     bind r source-file ~/.config/tmux/tmux.conf \; display-message "Config reloaded!"
+    #
+    #     unbind p
+    #     bind p paste-buffer
+    #
+    #     set-option -g status-position top
+    #
+    #     bind-key -T prefix C-l switch -t notes
+    #     bind-key -T prefix C-d switch -t dotfiles
+    #     bind-key -T prefix C-g split-window "$SHELL --login -i -c 'navi --print | head -c -1 | tmux load-buffer -b tmp - ; tmux paste-buffer -p -t {last} -b tmp -d'"
+    #
+    #     set -g @yank_selection 'clipboard'
+    #   '';
+    #   };
     # Starship command history
     starship = {
       enable = true;
