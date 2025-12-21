@@ -19,7 +19,7 @@ in
   home.sessionVariables = {
     EDITOR = "nvim";
     VISUAL = "nvim";
-    TERMINAL = "kitty";
+    TERMINAL = "ghostty";
     LANG = "en_US.UTF-8";
     FZF_CTRL_T_OPTS = "--preview 'bat -n --color=always --line-range :500 {}'";
     FZF_ALT_C_OPTS = "--preview 'eza --tree --color=always {} | head -200'";
@@ -68,12 +68,12 @@ in
     # Passwords
     pass
     gnupg
-    kitty-themes
     jetbrains-mono
     cascadia-code
     aerospace
     jankyborders
     gh
+    poetry
     # tmux replacement
     zellij
     mousecape
@@ -92,10 +92,6 @@ in
     tree-sitter
     fzf
     nodejs
-    python312Packages.jupytext
-    python312Packages.jupyter-client
-    python312Packages.pynvim
-    python312Packages.debugpy
     quarto
     graphviz
     uv
@@ -221,6 +217,7 @@ in
         dialect = "us";
         style = "compact";
         inline_height = 15;
+        store_failed = false;
       };
     };
 
@@ -315,23 +312,6 @@ in
     # Starship command history
     starship = {
       enable = true;
-    };
-
-    # Kitty terminal
-    kitty = {
-      enable = false;
-      font = {
-        name = "Cascadia Mono NF";
-        size = 14;
-      };
-      shellIntegration.enableZshIntegration = true;
-      themeFile = "Monokai_Pro";
-      settings = {
-        background_opacity = 1.0;
-        bold_font = "auto";
-        italic_font = "auto";
-        bold_italic_font = "auto";
-      };
     };
   };
 }
