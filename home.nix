@@ -75,31 +75,15 @@ in
     gh
     poetry
     # tmux replacement
-    zellij
     mousecape
     # Golang templ
-    delve
-    gotests
-    gocyclo
-    go-critic
-    gofumpt
-    golangci-lint-langserver
     air
-    protolint
     podman
     podman-compose
-    imagemagick
     tree-sitter
     fzf
-    nodejs
-    quarto
-    graphviz
     uv
-    p7zip
-    neovim
-    lua5_1
     uv
-    gradle
   ];
 
   programs = {
