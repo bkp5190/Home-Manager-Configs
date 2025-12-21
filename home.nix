@@ -3,23 +3,8 @@
   ...
 }:
 let
-  nixvim = import (
-    builtins.fetchGit {
-      url = "https://github.com/nix-community/nixvim";
-      ref = "main";
-    }
-  );
 in
 {
-  imports = [
-    nixvim.homeManagerModules.nixvim
-    ./autocommands.nix
-    ./completion.nix
-    ./keymappings.nix
-    ./options.nix
-    ./plugins
-    ./todo.nix
-  ];
   # Define the state version, which corresponds to the version of Home Manager
   # you are using. This should be updated whenever you update Home Manager.
   home.stateVersion = "25.05";
@@ -34,7 +19,7 @@ in
   home.sessionVariables = {
     EDITOR = "nvim";
     VISUAL = "nvim";
-    TERMINAL = "kitty";
+    TERMINAL = "ghostty";
     LANG = "en_US.UTF-8";
     FZF_CTRL_T_OPTS = "--preview 'bat -n --color=always --line-range :500 {}'";
     FZF_ALT_C_OPTS = "--preview 'eza --tree --color=always {} | head -200'";
@@ -49,7 +34,6 @@ in
     curl
     wget
     lazygit
-    tmux
     # Telescope
     ripgrep
     # zsh-powerlevel10k
@@ -84,56 +68,34 @@ in
     # Passwords
     pass
     gnupg
-    kitty-themes
     jetbrains-mono
     cascadia-code
     aerospace
     jankyborders
     gh
+    poetry
     # tmux replacement
-    zellij
     mousecape
     # Golang templ
-    delve
-    gotests
-    templ
-    tailwindcss
-    gocyclo
-    go-critic
-    gofumpt
-    golangci-lint-langserver
     air
-    protolint
     podman
     podman-compose
-    imagemagick
-    openscad
     tree-sitter
     fzf
-    nodejs
-    python312Packages.jupytext
-    python312Packages.jupyter-client
-    python312Packages.pynvim
-    quarto
-    graphviz
     uv
-    dotnet-sdk
-    p7zip
+    uv
   ];
 
   programs = {
     # Enable Home Manager to manage your home directory.
     home-manager.enable = true;
-
     # direnv
     direnv.enable = true;
-
     # Enable and configure some basic programs.
     git = {
       enable = true;
       userName = "bpatel347";
       userEmail = "bpatel347@gatech.edu";
-
       extraConfig = {
         init.defaultBranch = "main";
       };
@@ -217,13 +179,13 @@ in
           };
         }
       ];
-      initExtra = ''
+      initContent = ''
         ;
                 [[ ! -f ~/.config/home-manager/.p10k.zsh ]] || source ~/.config/home-manager/.p10k.zsh
       '';
     };
 
-    # Atuin
+    # Atuin terminal history scroller 
     atuin = {
       enable = true;
       enableZshIntegration = true;
@@ -231,102 +193,13 @@ in
         dialect = "us";
         style = "compact";
         inline_height = 15;
+        store_failed = false;
       };
-    };
-
-    # Neovim
-    nixvim = {
-      enable = true;
-      defaultEditor = true;
-      viAlias = true;
-      vimAlias = true;
-
-      luaLoader.enable = true;
-      extraConfigLua = ''
-        -- Quarto runner keymaps (Lua functions)
-        local runner = require("quarto.runner")
-        vim.keymap.set("n", "<leader>rc", runner.run_cell,  { desc = "Run cell", silent = true })
-        vim.keymap.set("n", "<leader>rca", runner.run_above, { desc = "Run cell and above", silent = true })
-        vim.keymap.set("n", "<leader>rA", runner.run_all,   { desc = "Run all cells", silent = true })
-        vim.keymap.set("n", "<leader>rl", runner.run_line,  { desc = "Run line", silent = true })
-        vim.keymap.set("v", "<leader>r",  runner.run_range, { desc = "Run visual range", silent = true })
-        vim.keymap.set("n", "<leader>RA", function()
-          runner.run_all(true)
-        end, { desc = "Run all cells of all languages", silent = true })
-
-        -- Command to create a new empty .ipynb file
-        local default_notebook = [[
-        {
-          "cells": [
-           {
-            "cell_type": "markdown",
-            "metadata": {},
-            "source": [""]
-           }
-          ],
-          "metadata": {
-           "kernelspec": {
-            "display_name": "Python 3",
-            "language": "python",
-            "name": "python3"
-           },
-           "language_info": {
-            "codemirror_mode": {
-              "name": "ipython"
-            },
-            "file_extension": ".py",
-            "mimetype": "text/x-python",
-            "name": "python",
-            "nbconvert_exporter": "python",
-            "pygments_lexer": "ipython3"
-           }
-          },
-          "nbformat": 4,
-          "nbformat_minor": 5
-        }
-        ]]
-
-        local function new_notebook(filename)
-          local path = filename .. ".ipynb"
-          local file = io.open(path, "w")
-          if file then
-            file:write(default_notebook)
-            file:close()
-            vim.cmd("edit " .. path)
-          else
-            print("Error: Could not open new notebook file for writing.")
-          end
-        end
-
-        vim.api.nvim_create_user_command('NewNotebook', function(opts)
-          new_notebook(opts.args)
-        end, {
-          nargs = 1,
-          complete = 'file'
-        })
-      '';
     };
 
     # Starship command history
     starship = {
       enable = true;
-    };
-
-    # Kitty terminal
-    kitty = {
-      enable = false;
-      font = {
-        name = "Cascadia Mono NF";
-        size = 14;
-      };
-      shellIntegration.enableZshIntegration = true;
-      themeFile = "Monokai_Pro";
-      settings = {
-        background_opacity = 1.0;
-        bold_font = "auto";
-        italic_font = "auto";
-        bold_italic_font = "auto";
-      };
     };
   };
 }
