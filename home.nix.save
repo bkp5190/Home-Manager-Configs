@@ -43,7 +43,6 @@ in
     nurl
     # Nix formatting
     nixpkgs-fmt
-    wimlib
     nixpkgs-review
     # File directories
     tree
@@ -85,13 +84,7 @@ in
     fzf
     uv
     uv
-    neovim
-    python313Packages.debugpy
-    python313Packages.notebook
-    lua-language-server
-    zls
-    isort
-    black
+    nvim
   ];
 
   programs = {
@@ -201,6 +194,7 @@ in
         dialect = "us";
         style = "compact";
         inline_height = 15;
+        store_failed = false;
       };
     };
 
