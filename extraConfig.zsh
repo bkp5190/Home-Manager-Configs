@@ -1,5 +1,3 @@
-typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
-POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
 _fzf_comprun() {
     local command=$1
     shift
@@ -12,8 +10,5 @@ _fzf_comprun() {
     esac
 }
 
-eval "$(zoxide init zsh)"
 eval "$(devbox global shellenv --init-hook)"
-eval "$(direnv hook zsh)"
-eval "$(starship init zsh)"
-export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$HOME/.npm-global/bin:$PATH"

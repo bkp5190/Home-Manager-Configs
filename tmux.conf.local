@@ -1,0 +1,60 @@
+# Local overrides for Oh My Tmux! (https://github.com/gpakosz/.tmux)
+#
+# Theming is delegated to the Catppuccin tmux plugin (frappe flavor, rounded
+# window style), which is run after this file and Oh My Tmux! are sourced
+# (see home.nix). The options below configure that plugin; Oh My Tmux! still
+# supplies keybindings, mouse mode, and other non-visual behavior.
+
+# -- theming (Catppuccin Frappe, rounded windows) ----------------------------
+
+# Keep Oh My Tmux from replacing the Catppuccin status bar.
+tmux_conf_theme=disabled
+
+set -g @catppuccin_flavor "frappe"
+set -g @catppuccin_window_status_style "rounded"
+set -g @catppuccin_window_number_position "right"
+set -g @catppuccin_window_flags "icon"
+
+# -- clipboard --------------------------------------------------------------
+
+# copying a selection (including mouse drag-to-select) also copies to the
+# macOS clipboard via pbcopy
+tmux_conf_copy_to_os_clipboard=true
+
+# -- user customizations -----------------------------------------------------
+
+# Restore Home Manager's escape timing after Oh My Tmux loads its defaults.
+set -s escape-time 0
+
+# bigger scrollback
+set -g history-limit 50000
+
+# start with mouse mode enabled (drag to select/copy, click to switch panes)
+set -g mouse on
+
+# move status line to the top
+set -g status-position top
+
+# prefix: Ctrl+Space instead of Ctrl+b/Ctrl+a
+set -gu prefix2
+unbind C-b
+unbind C-a
+set -g prefix C-Space
+bind C-Space send-prefix
+
+# Preserve terminal colors, focus, clipboard, and modified keys for Neovim/AI TUIs.
+# Oh My Tmux overrides Home Manager's earlier default-terminal setting.
+set -g default-terminal "tmux-256color"
+set -g focus-events on
+set -s extended-keys on
+set -as terminal-features ',xterm*:RGB:extkeys'
+set -as terminal-overrides ',xterm*:Tc'
+set -s set-clipboard on
+# Ctrl-Space remains the prefix; Neovim completion uses Ctrl-X Ctrl-O.
+# Refresh environment when attaching from a new shell.
+set -ga update-environment ' PATH VIRTUAL_ENV CONDA_PREFIX'
+unbind -n C-l
+# No unprefixed Ctrl/Alt navigation: those keys belong to Neovim and AI TUIs.
+
+# Review pane history in Neovim; reapply after Oh My Tmux adjusts bindings.
+bind S display-popup -E -w 95% -h 90% '/Users/boneypatel/.nix-profile/bin/scrollback "#{pane_id}"' #!important
